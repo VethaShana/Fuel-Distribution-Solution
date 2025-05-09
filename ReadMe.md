@@ -1,4 +1,4 @@
-<p align="center"> Fuel Distribution System <p align="center">
+<h1 align="center"> Fuel Distribution System </h1>
 
 ## About
 
