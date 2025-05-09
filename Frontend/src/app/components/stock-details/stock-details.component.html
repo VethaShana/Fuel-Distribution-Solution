@@ -1,0 +1,51 @@
+<mat-card>
+    <mat-card-content>
+<div style="width: 400px; margin:auto">
+    <div *ngIf="CurrentStock">
+        <h3> Stocks </h3>
+        <form>
+            <div>
+                <label for="fuelType">Fuel Type :  </label>
+                    <input
+                    type = "text"
+                    class = "form"
+                    id = "fuelType"
+                    [(ngModel)]="CurrentStock.FuelType"
+                    name = "fuelType"/>
+
+            </div>
+            <br/>
+            <div>
+                <label for="fuelStock"> Fuel Stock : </label>
+                <input
+                type = "text"
+                    class = "form"
+                    id = "fuelStock"
+                    [(ngModel)]="CurrentStock.FuelStock"
+                    name = "fuelStock"/> Letres.
+    
+            </div>
+
+        </form>
+        <br/>
+
+        <button mat-raised-button (click)="DeleteStock()">
+            Delete 
+        </button>
+        
+        <button mat-raised-button type="submit" (click)="UpdateStock()">
+            Update 
+        </button>
+        <p>{{message}}</p>
+    
+    </div>
+    
+    <div *ngIf="!CurrentStock">
+        <br/>
+        <p>Cannot access this Stock</p>
+    </div>
+
+
+</div>
+    </mat-card-content>
+</mat-card>

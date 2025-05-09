@@ -1,0 +1,110 @@
+<mat-card>
+  <mat-card-content>
+    <nav>
+      <button type ="submit" mat-raised-button routerLink="../stocks/">Admin Page</button>
+    </nav>
+  </mat-card-content>
+</mat-card>
+<hr>
+    <mat-card>
+      <mat-card-content>
+    <label>Filter by Station Reg.No : </label>
+  <mat-form-field>
+    <input matInput type="text" [(ngModel)] = "FindKey" >
+   </mat-form-field> --->
+   <button mat-raised-button (click)="FilterByUniqueKey()" color="primary"> SEARCH </button>
+  <h4>Filtered by : {{FindKey}}</h4>
+  <br/>
+<table class="mat-elevation-z8" style="width: 100%;" >
+  <tr>
+    <td>ID</td>
+    <td>Reg No.</td>
+    <td>Name</td>
+    <td>Fuel Type</td>
+    <td>Fuel</td>
+    <td>Date</td>
+    <td>Status</td>
+    <td>Actions</td>
+  </tr>
+  
+  <tr *ngFor="let lorder of FilteredOrders">
+    <td>{{lorder.id}}</td>
+    <td>{{lorder.uniqueKey}}</td>
+    <td>{{lorder.name}}</td>
+    <td>{{lorder.fuelType}}</td>
+    <td>{{lorder.fuel}}</td>
+    <td>{{lorder.date| date:'shortDate'}}</td>
+    <td>{{lorder.status}}</td>
+    <td> 
+      <button  mat-raised-button (click)="deleteOrder(lorder.id)" color="secondary">Delete Order</button>
+      <button  mat-raised-button (click)="selectOrder(lorder)" color="secondary">Select Order</button>
+
+    </td>
+    </tr>
+  </table>
+  </mat-card-content>
+</mat-card>
+
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Create a Order</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form #f ="ngForm" class="mat-elevation-z8" style="width: 100%; padding: 5px;">
+  
+        <mat-form-field>
+          <input matInput placeholder="Station Reg.No" name="uniqueKey" [(ngModel)] = "order.uniqueKey" required>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Name" name="name" [(ngModel)] = "order.name" required>
+        </mat-form-field>
+  
+        <br/>
+            <label for="FuelType">Fuel Type : </label>
+            <select matInput name="fuelType" [(ngModel)] = "order.fuelType" required>
+            <option value="Petrol_92">Petrol(92 Octane) A0023L99</option>
+            <option value="Petrol_95">Petrol(95 Octane EURO 4) A0018L99</option>
+            <option value="Diesal">Diesel(Auto Diesel) A0013L99</option>
+            <option value="Super_Diesal">Diesel(Lanka Super Diesel 4 star) A0016L99</option>
+            <option value="Furnace_Oil">Furnace Oil</option>
+            <option value="Naptha">Naptha P-021</option>
+            <option value="Lanka_SBP">Lanka SBP 60/145 P-702</option>
+            
+            </select>
+       
+        <br/><br/>
+        
+        <mat-form-field>
+            <input matInput placeholder="Fuel" name="fuel" [(ngModel)] = "order.fuel" required>
+        </mat-form-field>
+        
+        <mat-form-field>
+            <input matInput placeholder="Date" name="date" [(ngModel)] = "order.date">  
+        </mat-form-field>
+        
+        <!--<mat-form-field>
+            <input matInput placeholder="Status" name="status" [(ngModel)] = "order.status" >
+        </mat-form-field>-->
+
+        <br/>
+        <label for="Status">Status : </label>
+        <select matInput name="status" [(ngModel)] = "order.status" required>
+        <option value="Requested">Requested</option>
+        <option value="Received">Received</option>
+        </select>
+   
+    <br/><br/>
+        
+      </form>
+  
+    </mat-card-content>
+    <mat-card-actions>
+        <button  mat-raised-button *ngIf="!order.id" (click)="createOrder(f)" color="primary">Save Contact</button>
+        <button  mat-raised-button *ngIf="order.id" (click)="updateOrder(f)" (click)="newOrder()" color="primary">Update Contact</button>
+        <button  mat-raised-button (click)="newOrder()" color="primary">New..</button>
+        
+    </mat-card-actions>
+  </mat-card>
+
+  
+  

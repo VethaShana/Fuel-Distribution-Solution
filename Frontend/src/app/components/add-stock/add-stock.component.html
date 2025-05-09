@@ -1,0 +1,43 @@
+<mat-card>
+    <mat-card-content>
+<div style="width: 400px; margin:auto">
+    <div class="submit-form">
+        <div *ngIf="!submitted">
+        <div class="form-group">
+            <label for="fuelType">
+                FuelType :
+            </label>
+            <input 
+                type="text"
+                class="form-control"
+                id="fuelType"
+                required
+                [(ngModel)]="stock.fuelType"
+                name="fuelType"/>
+        </div>
+        <br/>
+        <div class="form-group">
+            <label for="fuelStock">
+                FuelStock :
+            </label>
+            <input 
+                type="number"
+                class="form-control"
+                id="fuelStock"
+                required
+                [(ngModel)]="stock.fuelStock"
+                name="fuelStock"/> Litres
+        </div>
+        <br/>
+        <button mat-raised-button (click)="saveStock()" class="btn btn-success">Submit</button>
+        </div>
+        <div *ngIf="submitted">
+            <h4> Submitted Successfully</h4>
+            <button mat-raised-button class="btn btn-success" (click)="newStock()">
+                Add
+            </button>
+        </div>
+    </div>
+</div>
+    </mat-card-content>
+</mat-card>

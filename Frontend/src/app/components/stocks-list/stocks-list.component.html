@@ -1,0 +1,74 @@
+<mat-card>
+    <mat-card-header>
+<nav>       
+    <button  mat-raised-button> Stock Details </button>
+    <a routerLink="/orders/all" mat-raised-button> Order Details </a>
+    <br/>
+</nav>
+</mat-card-header>
+</mat-card>
+<hr>
+
+<mat-card>
+    <mat-card-content>
+<div>
+    <div>
+
+        <div>
+            <input
+            type="text"
+            class="form-contrl"
+            placeholder="Search by Fuel Type"
+            [(ngModel)]="fuelType"/>
+            <br/>
+            <div class="input-group-append">
+                <button mat-raised-button
+                    class="btn btn-outline-secondary"
+                    type="button" (click)="searchFuelType()">Search</button>
+            </div>
+            <br>
+        </div>
+    </div>
+    <mat-card>
+        <mat-card-content>
+    <div>
+        <h3>Stocks List</h3>
+        <ul>
+            <li 
+            *ngFor="let stock of stocks;let i=index"
+            [class.active] = "i --currentIndex"
+            (click)="setActiveStock(stock,i)"
+            >
+            {{stock.fuelType}}
+        </li>
+        </ul>
+        <br/>
+        <button mat-raised-button class="" (click)="removeAllStocks()">
+            Remove All
+        </button>
+
+        <a routerLink="/add" mat-raised-button> Add </a>
+    </div>
+    </mat-card-content>
+</mat-card>
+    <br/>
+    <div>
+        <div *ngIf="currentStock">
+            <h4><b>Stock</b></h4>
+            <div>
+                <label><strong>Fuel Type : </strong></label>{{currentStockFuelType}}
+            </div>
+            <div>
+                <label><strong>Fuel Stock : </strong></label>{{currentStockFuelStock}} Litres
+            </div>
+            <br/>
+            <a routerLink="/stocks/{{currentStockID}}" mat-raised-button>Edit</a>
+        </div>
+        <div *ngIf = "!currentStock">
+            <br/>
+            <p>Click on Stock !!!!! </p>
+        </div>
+    </div>
+</div>
+    </mat-card-content>
+</mat-card>
