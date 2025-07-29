@@ -12,7 +12,7 @@ import { OrdersController } from './orders/orders.controller';
       type: 'mysql',
       database: 'fueldistribution',
       username: 'root',
-      password: 'Vetha1234@',
+      password: '',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
